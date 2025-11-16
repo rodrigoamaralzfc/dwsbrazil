@@ -73,7 +73,6 @@ export const Sidebar = () => {
       <Button
         variant="primary"
         onClick={applyFilters}
-      // disabled={!hasActiveFilters}
       >
         Apply filters
       </Button>

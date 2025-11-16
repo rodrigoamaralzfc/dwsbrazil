@@ -13,11 +13,13 @@ type FilterContextType = {
   finalSelectedAuthors: string[];
   sortBy: string;
   searchQuery: string;
+  finalSearchQuery: string;
   toggleCategory: (categoryId: string) => void;
   toggleAuthor: (authorId: string) => void;
   setSortBy: (value: string) => void;
   setSearchQuery: (value: string) => void;
   applyFilters: () => void;
+  applySearch: () => void;
 };
 
 const FilterContext = createContext<FilterContextType | null>(null);
@@ -29,6 +31,7 @@ type Props = {
 export const FilterProvider = ({ children }: Props) => {
   const [finalSelectedCategories, setFinalSelectedCategories] = useState<string[]>([]);
   const [finalSelectedAuthors, setFinalSelectedAuthors] = useState<string[]>([]);
+  const [finalSearchQuery, setFinalSearchQuery] = useState<string>("");
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
@@ -58,6 +61,10 @@ export const FilterProvider = ({ children }: Props) => {
     setFinalSelectedAuthors(selectedAuthors);
   }, [selectedCategories, selectedAuthors]);
 
+  const applySearch = useCallback(() => {
+    setFinalSearchQuery(searchQuery);
+  }, [searchQuery]);
+
   const value: FilterContextType = {
     selectedCategories,
     finalSelectedCategories,
@@ -65,11 +72,13 @@ export const FilterProvider = ({ children }: Props) => {
     finalSelectedAuthors,
     sortBy,
     searchQuery,
+    finalSearchQuery,
     toggleCategory,
     toggleAuthor,
     setSortBy,
     setSearchQuery,
     applyFilters,
+    applySearch,
   };
 
   return (

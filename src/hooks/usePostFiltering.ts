@@ -3,7 +3,7 @@ import type { Post } from '@/types/post';
 import { useMemo } from 'react';
 
 export const usePostFiltering = (posts: Post[]) => {
-  const { finalSelectedCategories, finalSelectedAuthors, sortBy, searchQuery } = useFilters();
+  const { finalSelectedCategories, finalSelectedAuthors, sortBy, finalSearchQuery } = useFilters();
 
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
@@ -18,9 +18,9 @@ export const usePostFiltering = (posts: Post[]) => {
         finalSelectedAuthors.includes(post.author?.id);
 
       const matchesSearch =
-        searchQuery === '' ||
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.content?.toLowerCase().includes(searchQuery.toLowerCase());
+        finalSearchQuery === '' ||
+        post.title.toLowerCase().includes(finalSearchQuery.toLowerCase()) ||
+        post.content?.toLowerCase().includes(finalSearchQuery.toLowerCase());
 
       return (matchesCategory || matchesAuthor) && matchesSearch;
     });
@@ -38,7 +38,7 @@ export const usePostFiltering = (posts: Post[]) => {
     }
 
     return filtered;
-  }, [posts, finalSelectedCategories, finalSelectedAuthors, sortBy, searchQuery]);
+  }, [posts, finalSelectedCategories, finalSelectedAuthors, sortBy, finalSearchQuery]);
 
   return filteredPosts
 };

@@ -1,14 +1,20 @@
-import SearchSVG from '@/assets/icons/search-button.svg?react';
 import LogoSVG from '@/assets/icons/dws-logo.svg?react';
+import SearchSVG from '@/assets/icons/search-button.svg?react';
 import { useFilters } from '@/contexts/FilterContext';
 import styles from './Header.module.scss';
 
 export const Header = () => {
-  const { searchQuery, setSearchQuery } = useFilters();
+  const { searchQuery, setSearchQuery, applySearch } = useFilters();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
+
+  const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      applySearch()
+    }
+  }
 
   return (
     <header className={styles.header}>
@@ -23,12 +29,13 @@ export const Header = () => {
               className={styles.searchInput}
               value={searchQuery}
               onChange={handleSearchChange}
+              onKeyDown={onPressEnter}
               aria-label="Search blog posts"
             />
             <button
               className={styles.searchButton}
               aria-label="Submit search"
-              onClick={() => { }} // TODO
+              onClick={applySearch}
             >
               <SearchSVG />
             </button>
