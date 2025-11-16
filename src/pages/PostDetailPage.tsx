@@ -45,43 +45,47 @@ export const PostDetailPage = () => {
 
   return (
     <div className={styles.postDetailPage}>
-      <article className={styles.container}>
+      <div className={styles.wrapper}>
         <Button
           variant="secondary"
           onClick={handleBack}
+          className={styles.backButton}
         >
           <Arrow />
           Back
         </Button>
 
-        <div className={styles.header}>
-          <h1 className={styles.title}>{post.title}</h1>
+        <article className={styles.container}>
 
-          <div className={styles.meta}>
-            <time className={styles.date}>
-              {formatDate(post.createdAt || post.updatedAt, 'long')}
-            </time>
-            {post.author && (
-              <span>By {post.author.name}</span>
-            )}
+          <div className={styles.header}>
+            <h1 className={styles.title}>{post.title}</h1>
+
+            <div className={styles.meta}>
+              <time className={styles.date}>
+                {formatDate(post.createdAt || post.updatedAt, 'long')}
+              </time>
+              {post.author && (
+                <span>By {post.author.name}</span>
+              )}
+            </div>
           </div>
-        </div>
 
-        {post.thumbnail_url && (
-          <img
-            // FIXME: placeholder
-            src={post.thumbnail_url || '/placeholder.svg'}
-            alt={post.title}
-            className={styles.image}
-          />
-        )}
+          {post.thumbnail_url && (
+            <img
+              // FIXME: placeholder
+              src={post.thumbnail_url || '/placeholder.svg'}
+              alt={post.title}
+              className={styles.image}
+            />
+          )}
 
-        <div className={styles.content}>
-          {post.content && <p>{post.content}</p>}
-        </div>
+          <div className={styles.content}>
+            {post.content && <p>{post.content}</p>}
+          </div>
 
-        <LatestArticles />
-      </article>
+          <LatestArticles />
+        </article>
+      </div>
     </div>
   );
 };

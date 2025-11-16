@@ -16,34 +16,29 @@ export const LatestArticles = () => {
   } = useQuery({ queryKey: ["posts"], queryFn: api.getPosts });
 
   const lastPosts = sortByNewest(posts).slice(-3).reverse();
-  const dates = posts.map(p => p.createdAt)
-  console.log(posts, lastPosts, dates, uniqueArray(dates))
+
+  if (isLoading) {
+    return <div className={styles.loading}>Loading posts...</div>
+  }
+
+  // TODO
+  if (error) {
+    return null
+  }
+
+  if (!isLoading && lastPosts.length === 0) {
+    return null
+  }
 
   return (
-    <main className={styles.mainContent}>
-      {/* TODO error handling */}
-      {error && (
-        <div className={styles.errorMessage}>
-          Error loading posts. Please try again.
-        </div>
-      )}
+    <div className={styles.mainContent}>
+      <h2 className={styles.title}>Latest Articles</h2>
 
-      {/* TODO loading state */}
-      {isLoading && <div className={styles.loading}>Loading posts...</div>}
-
-      {!isLoading && lastPosts.length === 0 && (
-        <div className={styles.noResults}>
-          No posts found. Try adjusting your filters.
-        </div>
-      )}
-
-      {!isLoading && lastPosts.length > 0 && (
-        <div className={styles.postsGrid}>
-          {lastPosts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
-      )}
-    </main>
+      <div className={styles.postsGrid}>
+        {lastPosts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
+      </div>
+    </div>
   );
 };

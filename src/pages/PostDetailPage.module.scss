@@ -2,12 +2,33 @@
 @use "../styles/mixins" as *;
 
 .postDetailPage {
+  display: flex;
+  justify-content: center;
   min-height: 100vh;
   background-color: $neutral-lightest;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 875px) 1fr;
+  align-items: flex-start;
+  margin-inline: 56px;
+  width: 100%;
+  max-width: 1325px;
+
+  @include mobile-first-md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.backButton {
+  width: min-content;
+  height: min-content;
+  margin-right: 32px;
+}
+
 .container {
-  max-width: 800px;
+  max-width: 875px;
   margin: 0 auto;
   padding: $space-xl $space-lg;
   background-color: white;
@@ -17,27 +38,6 @@
   @include mobile-first-md {
     padding: $space-lg $space-md;
     margin-top: $space-md;
-  }
-}
-
-.backButton {
-  display: inline-flex;
-  align-items: center;
-  gap: $space-sm;
-  padding: $space-sm $space-md;
-  background-color: transparent;
-  color: $secondary-medium;
-  border: 1px solid $secondary-medium;
-  border-radius: $radius-md;
-  cursor: pointer;
-  font-size: $font-size-sm;
-  font-weight: 500;
-  @include transition();
-  margin-bottom: $space-lg;
-
-  &:hover {
-    background-color: $secondary-medium;
-    color: white;
   }
 }
 
@@ -89,25 +89,6 @@
   p {
     margin-bottom: $space-md;
   }
-}
-
-.categories {
-  display: flex;
-  gap: $space-sm;
-  flex-wrap: wrap;
-  padding-top: $space-lg;
-  border-top: 1px solid $neutral-light;
-}
-
-.categoryTag {
-  display: inline-block;
-  background-color: $neutral-lightest;
-  color: $neutral-dark;
-  padding: $space-sm $space-md;
-  border-radius: $radius-md;
-  font-size: $font-size-sm;
-  font-weight: 500;
-  text-transform: capitalize;
 }
 
 .loading,

@@ -13,7 +13,7 @@
   margin-top: $space-md;
   font-size: $font-size-base;
   line-height: 100%;
-  letter-spacing: 0%;
+  letter-spacing: 0;
 
   &:disabled {
     cursor: not-allowed;
@@ -28,7 +28,6 @@
   padding: $padding-button;
   font-size: $font-size-base;
   font-weight: 600;
-  font-style: SemiBold;
 
   &:hover:not(:disabled) {
     background-color: $secondary-button-hover-primary;
@@ -44,7 +43,6 @@
   border: 1px solid $secondary-medium;
   font-size: $font-size-base;
   font-weight: 700;
-  font-style: Bold;
   text-align: center;
   vertical-align: middle;
 
