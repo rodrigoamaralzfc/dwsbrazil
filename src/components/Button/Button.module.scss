@@ -1,0 +1,54 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.button {
+  @include flex-center;
+  padding: $padding-button;
+  border: none;
+  border-radius: $radius-xl;
+  font-size: $font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  @include transition(background-color);
+  margin-top: $space-md;
+  font-size: $font-size-base;
+  line-height: 100%;
+  letter-spacing: 0%;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background-color: $secondary-medium;
+  color: $neutral-lightest;
+  border: none;
+  border-radius: $radius-button;
+  padding: $padding-button;
+  font-size: $font-size-base;
+  font-weight: 600;
+  font-style: SemiBold;
+
+  &:hover:not(:disabled) {
+    background-color: $secondary-button-hover-primary;
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: $secondary-medium;
+  border-radius: $radius-button-secondary;
+  padding: $padding-button-secondary;
+  gap: 12px;
+  border: 1px solid $secondary-medium;
+  font-size: $font-size-base;
+  font-weight: 700;
+  font-style: Bold;
+  text-align: center;
+  vertical-align: middle;
+
+  &:hover:not(:disabled) {
+    background-color: $secondary-button-hover-secondary;
+  }
+}

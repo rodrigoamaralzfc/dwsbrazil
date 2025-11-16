@@ -1,3 +1,5 @@
+import Arrow from '@/assets/icons/arrow-left-magenta.svg?react';
+import { Button } from '@/components/Button/Button';
 import { api } from '@/services/api';
 import { formatDate } from '@/utils/date';
 import { useQuery } from '@tanstack/react-query';
@@ -43,10 +45,13 @@ export const PostDetailPage = () => {
   return (
     <div className={styles.postDetailPage}>
       <article className={styles.container}>
-        <button className={styles.backButton} onClick={handleBack}>
-          {/* FIXME icon */}
-          ← Back
-        </button>
+        <Button
+          variant="secondary"
+          onClick={handleBack}
+        >
+          <Arrow />
+          Back
+        </Button>
 
         <div className={styles.header}>
           <h1 className={styles.title}>{post.title}</h1>

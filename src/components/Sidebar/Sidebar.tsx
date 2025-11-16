@@ -2,6 +2,7 @@ import FilterIcon from '@/assets/icons/tune.svg?react';
 import { useFilters } from '@/contexts/FilterContext';
 import { api } from '@/services/api';
 import { useQuery } from '@tanstack/react-query';
+import { Button } from '../Button/Button';
 import styles from './Sidebar.module.scss';
 
 export const Sidebar = () => {
@@ -58,13 +59,12 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <button
-        className={styles.applyFiltersBtn}
+      <Button
+        variant="primary"
         onClick={clearFilters}
-        disabled={!hasActiveFilters}
-      >
+        disabled={!hasActiveFilters}>
         {hasActiveFilters ? 'Clear filters' : 'Apply filters'}
-      </button>
+      </Button>
     </aside>
   );
 };

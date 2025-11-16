@@ -76,29 +76,6 @@
   }
 }
 
-.applyFiltersBtn {
-  width: 100%;
-  padding: $space-md;
-  background-color: $secondary-medium;
-  color: white;
-  border: none;
-  border-radius: $radius-xl;
-  font-size: $font-size-base;
-  font-weight: 600;
-  cursor: pointer;
-  @include transition(background-color);
-  margin-top: $space-md;
-
-  &:hover:not(:disabled) {
-    background-color: $secondary-dark;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
 @include mobile-first-lg {
   .sidebar {
     border: none;

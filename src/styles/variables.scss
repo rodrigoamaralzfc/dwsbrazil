@@ -14,6 +14,8 @@ $primary-dark: #020318;
 $secondary-light: #ef4cb4;
 $secondary-medium: #d31650;
 $secondary-dark: #8c1038;
+$secondary-button-hover-primary: #a4103f;
+$secondary-button-hover-secondary: #ffe7ee;
 
 $accent-light: #00bfc1;
 $accent-medium: #0d9598;
@@ -26,6 +28,10 @@ $space-md: 16px;
 $space-lg: 24px;
 $space-xl: 32px;
 $space-2xl: 48px;
+
+// paddings
+$padding-button: 12px 8px;
+$padding-button-secondary: 12px 16px;
 
 // fonts
 $font-family: "Open Sans", sans-serif;
@@ -46,6 +52,8 @@ $radius-sm: 4px;
 $radius-md: 8px;
 $radius-lg: 12px;
 $radius-xl: 16px;
+$radius-button: 42px;
+$radius-button-secondary: 54px;
 
 // shadows
 // TODO
