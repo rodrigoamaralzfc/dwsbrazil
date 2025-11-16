@@ -2,7 +2,7 @@ import { PostCard } from "@/components/PostCard/PostCard";
 import { api } from "@/services/api";
 import { sortByNewest } from "@/utils/date";
 import { useQuery } from "@tanstack/react-query";
-import styles from './LatestArticles.module.scss';
+import styles from "./LatestArticles.module.scss";
 
 export const LatestArticles = () => {
   const {
@@ -14,16 +14,16 @@ export const LatestArticles = () => {
   const lastPosts = sortByNewest(posts).slice(-3).reverse();
 
   if (isLoading) {
-    return <div className={styles.loading}>Loading posts...</div>
+    return <div className={styles.loading}>Loading posts...</div>;
   }
 
   // TODO
   if (error) {
-    return null
+    return null;
   }
 
   if (!isLoading && lastPosts.length === 0) {
-    return null
+    return null;
   }
 
   return (

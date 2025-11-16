@@ -1,7 +1,7 @@
-import LogoSVG from '@/assets/icons/dws-logo.svg?react';
-import SearchSVG from '@/assets/icons/search-button.svg?react';
-import { useFilters } from '@/contexts/FilterContext';
-import styles from './Header.module.scss';
+import LogoSVG from "@/assets/icons/dws-logo.svg?react";
+import SearchSVG from "@/assets/icons/search-button.svg?react";
+import { useFilters } from "@/contexts/FilterContext";
+import styles from "./Header.module.scss";
 
 export const Header = () => {
   const { inputSearch, setInputSearch, applySearch } = useFilters();
@@ -12,9 +12,9 @@ export const Header = () => {
 
   const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      applySearch()
+      applySearch();
     }
-  }
+  };
 
   return (
     <header className={styles.header}>

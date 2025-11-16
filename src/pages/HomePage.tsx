@@ -7,7 +7,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { usePostFiltering } from "@/hooks/usePostFiltering";
 import { api } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
-import styles from './HomePage.module.scss';
+import styles from "./HomePage.module.scss";
 
 export const HomePage = () => {
   const { sortBy, setSortBy } = useFilters();
@@ -17,7 +17,7 @@ export const HomePage = () => {
     error,
   } = useQuery({ queryKey: ["posts"], queryFn: api.getPosts });
   const filteredPosts = usePostFiltering(posts);
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value);
@@ -31,10 +31,17 @@ export const HomePage = () => {
         </div>
 
         <main className={styles.mainContent}>
-          {isMobile
-            ? <MobileBlogFilter sortBy={sortBy} handleSortChange={handleSortChange} />
-            : <DesktopBlogTop sortBy={sortBy} handleSortChange={handleSortChange} />
-          }
+          {isMobile ? (
+            <MobileBlogFilter
+              sortBy={sortBy}
+              handleSortChange={handleSortChange}
+            />
+          ) : (
+            <DesktopBlogTop
+              sortBy={sortBy}
+              handleSortChange={handleSortChange}
+            />
+          )}
 
           {/* TODO error handling */}
           {error && (

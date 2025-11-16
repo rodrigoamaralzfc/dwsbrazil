@@ -9,7 +9,7 @@ const WithHeaderLayout = () => (
     <Header />
     <Outlet />
   </>
-)
+);
 
 export const AppRoutes = () => (
   <BrowserRouter>

@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 type FilterContextType = {
   inputCategories: string[];
@@ -44,7 +39,7 @@ export const FilterProvider = ({ children }: Props) => {
     setInputCategories((prev) =>
       prev.includes(categoryId)
         ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId]
+        : [...prev, categoryId],
     );
   }, []);
 
@@ -52,7 +47,7 @@ export const FilterProvider = ({ children }: Props) => {
     setInputAuthors((prev) =>
       prev.includes(authorId)
         ? prev.filter((id) => id !== authorId)
-        : [...prev, authorId]
+        : [...prev, authorId],
     );
   }, []);
 
@@ -82,9 +77,7 @@ export const FilterProvider = ({ children }: Props) => {
   };
 
   return (
-    <FilterContext.Provider value={value}>
-      {children}
-    </FilterContext.Provider>
+    <FilterContext.Provider value={value}>{children}</FilterContext.Provider>
   );
 };
 

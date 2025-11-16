@@ -1,7 +1,7 @@
 import type { Category } from "@/types/category";
 
 interface CategoryTagListProps {
-  categories: Category[]
+  categories: Category[];
 }
 
 export const CategoryTagList = ({ categories }: CategoryTagListProps) => (
@@ -12,4 +12,4 @@ export const CategoryTagList = ({ categories }: CategoryTagListProps) => (
       </div>
     ))}
   </>
-)
+);

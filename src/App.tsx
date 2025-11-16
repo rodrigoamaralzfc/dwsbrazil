@@ -15,5 +15,5 @@ export const App = () => (
     <FilterProvider>
       <AppRoutes />
     </FilterProvider>
-  </QueryClientProvider >
+  </QueryClientProvider>
 );

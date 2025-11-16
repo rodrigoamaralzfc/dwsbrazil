@@ -1,7 +1,7 @@
-import type { Post } from '@/types/post';
-import { formatDate } from '@/utils/date';
-import { useNavigate } from 'react-router';
-import styles from './PostCard.module.scss';
+import type { Post } from "@/types/post";
+import { formatDate } from "@/utils/date";
+import { useNavigate } from "react-router";
+import styles from "./PostCard.module.scss";
 
 interface PostCardProps {
   post: Post;
@@ -27,9 +27,11 @@ export const PostCard = ({ post }: PostCardProps) => {
       <div className={styles.content}>
         <div className={styles.meta}>
           <time className={styles.date}>
-            {formatDate(post.createdAt, 'short')}
+            {formatDate(post.createdAt, "short")}
           </time>
-          {post.author && <span className={styles.author}>{post.author.name}</span>}
+          {post.author && (
+            <span className={styles.author}>{post.author.name}</span>
+          )}
         </div>
 
         <h3 className={styles.title}>{post.title}</h3>

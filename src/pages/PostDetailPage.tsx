@@ -1,11 +1,11 @@
-import Arrow from '@/assets/icons/arrow-left-magenta.svg?react';
-import { Button } from '@/components/Button/Button';
-import { LatestArticles } from '@/components/LatestArticles/LatestArticles';
-import { api } from '@/services/api';
-import { formatDate } from '@/utils/date';
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate, useParams } from 'react-router';
-import styles from './PostDetailPage.module.scss';
+import Arrow from "@/assets/icons/arrow-left-magenta.svg?react";
+import { Button } from "@/components/Button/Button";
+import { LatestArticles } from "@/components/LatestArticles/LatestArticles";
+import { api } from "@/services/api";
+import { formatDate } from "@/utils/date";
+import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router";
+import styles from "./PostDetailPage.module.scss";
 
 export const PostDetailPage = () => {
   const { id } = useParams();
@@ -15,14 +15,18 @@ export const PostDetailPage = () => {
     throw new Error("Route param id is missing");
   }
 
-  const { data: post, isLoading, error } = useQuery({
-    queryKey: ['post', id],
+  const {
+    data: post,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["post", id],
     queryFn: () => api.getPost(id),
-    enabled: !!id
+    enabled: !!id,
   });
 
   const handleBack = () => {
-    navigate('/');
+    navigate("/");
   };
 
   // TODO loading state
@@ -60,7 +64,11 @@ export const PostDetailPage = () => {
             <h1 className={styles.title}>{post.title}</h1>
 
             <div className={styles.meta}>
-              <img className={styles.avatar} src={post.author.profilePicture} alt="Profile picture" />
+              <img
+                className={styles.avatar}
+                src={post.author.profilePicture}
+                alt="Profile picture"
+              />
 
               <div className={styles.metaCol}>
                 <p>
@@ -68,7 +76,7 @@ export const PostDetailPage = () => {
                 </p>
 
                 <time className={styles.date}>
-                  {formatDate(post.createdAt || post.updatedAt, 'long')}
+                  {formatDate(post.createdAt || post.updatedAt, "long")}
                 </time>
               </div>
             </div>
@@ -77,7 +85,7 @@ export const PostDetailPage = () => {
           {post.thumbnail_url && (
             <img
               // FIXME: placeholder
-              src={post.thumbnail_url || '/placeholder.svg'}
+              src={post.thumbnail_url || "/placeholder.svg"}
               alt={post.title}
               className={styles.image}
             />

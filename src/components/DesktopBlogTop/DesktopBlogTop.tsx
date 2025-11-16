@@ -1,4 +1,4 @@
-import styles from './DesktopBlogTop.module.scss';
+import styles from "./DesktopBlogTop.module.scss";
 
 interface Props {
   sortBy: string;
@@ -21,5 +21,5 @@ export const DesktopBlogTop = ({ sortBy, handleSortChange }: Props) => {
         </select>
       </div>
     </div>
-  )
-}
+  );
+};

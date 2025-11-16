@@ -1,10 +1,10 @@
-import FilterIcon from '@/assets/icons/tune.svg?react';
-import { useFilters } from '@/contexts/FilterContext';
-import { useGetAuthors } from '@/hooks/useGetAuthors';
-import { useGetCategories } from '@/hooks/useGetCategories';
-import { useIsMobile } from '@/hooks/useIsMobile';
-import { Button } from '../Button/Button';
-import styles from './Sidebar.module.scss';
+import FilterIcon from "@/assets/icons/tune.svg?react";
+import { useFilters } from "@/contexts/FilterContext";
+import { useGetAuthors } from "@/hooks/useGetAuthors";
+import { useGetCategories } from "@/hooks/useGetCategories";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { Button } from "../Button/Button";
+import styles from "./Sidebar.module.scss";
 
 export const Sidebar = () => {
   const {
@@ -15,10 +15,10 @@ export const Sidebar = () => {
     applyFilters,
   } = useFilters();
 
-  const { data: categories = [] } = useGetCategories()
-  const { data: authors = [] } = useGetAuthors()
+  const { data: categories = [] } = useGetCategories();
+  const { data: authors = [] } = useGetAuthors();
 
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile();
 
   // TODO
   if (isMobile) {
@@ -64,10 +64,7 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <Button
-        variant="primary"
-        onClick={applyFilters}
-      >
+      <Button variant="primary" onClick={applyFilters}>
         Apply filters
       </Button>
     </aside>
