@@ -8,10 +8,8 @@ import styles from './Sidebar.module.scss';
 
 export const Sidebar = () => {
   const {
-    selectedCategories,
-    finalSelectedCategories,
-    selectedAuthors,
-    finalSelectedAuthors,
+    inputCategories,
+    inputAuthors,
     toggleCategory,
     toggleAuthor,
     applyFilters,
@@ -21,10 +19,6 @@ export const Sidebar = () => {
   const { data: authors = [] } = useQuery({ queryKey: ['authors'], queryFn: api.getAuthors });
 
   const isMobile = useIsMobile()
-
-  // TODO?
-  const hasActiveFilters =
-    selectedCategories.length > 0 || selectedAuthors.length > 0;
 
   // TODO
   if (isMobile) {
@@ -45,7 +39,7 @@ export const Sidebar = () => {
             <label key={category.id} className={styles.filterCheckbox}>
               <input
                 type="checkbox"
-                checked={selectedCategories.includes(category.id)}
+                checked={inputCategories.includes(category.id)}
                 onChange={() => toggleCategory(category.id)}
               />
               <span>{category.name}</span>
@@ -61,7 +55,7 @@ export const Sidebar = () => {
             <label key={author.id} className={styles.filterCheckbox}>
               <input
                 type="checkbox"
-                checked={selectedAuthors.includes(author.id)}
+                checked={inputAuthors.includes(author.id)}
                 onChange={() => toggleAuthor(author.id)}
               />
               <span>{author.name}</span>

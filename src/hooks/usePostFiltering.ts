@@ -3,26 +3,26 @@ import type { Post } from '@/types/post';
 import { useMemo } from 'react';
 
 export const usePostFiltering = (posts: Post[]) => {
-  const { finalSelectedCategories, finalSelectedAuthors, sortBy, finalSearchQuery } = useFilters();
+  const { categories, authors, sortBy, searchQuery } = useFilters();
 
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
 
     const filtered = posts.filter((post) => {
       const matchesCategory =
-        finalSelectedCategories.length === 0 ||
-        post.categories?.some((cat) => finalSelectedCategories.includes(cat.id));
+        categories.length === 0 ||
+        post.categories?.some((cat) => categories.includes(cat.id));
 
       const matchesAuthor =
-        finalSelectedAuthors.length === 0 ||
-        finalSelectedAuthors.includes(post.author?.id);
+        authors.length === 0 ||
+        authors.includes(post.author?.id);
 
       const matchesSearch =
-        finalSearchQuery === '' ||
-        post.title.toLowerCase().includes(finalSearchQuery.toLowerCase()) ||
-        post.content?.toLowerCase().includes(finalSearchQuery.toLowerCase());
+        searchQuery === '' ||
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.content?.toLowerCase().includes(searchQuery.toLowerCase());
 
-      return (matchesCategory || matchesAuthor) && matchesSearch;
+      return matchesCategory && matchesAuthor && matchesSearch;
     });
 
     if (sortBy === 'newest') {
@@ -38,7 +38,7 @@ export const usePostFiltering = (posts: Post[]) => {
     }
 
     return filtered;
-  }, [posts, finalSelectedCategories, finalSelectedAuthors, sortBy, finalSearchQuery]);
+  }, [posts, categories, authors, sortBy, searchQuery]);
 
   return filteredPosts
 };

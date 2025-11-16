@@ -4,10 +4,10 @@ import { useFilters } from '@/contexts/FilterContext';
 import styles from './Header.module.scss';
 
 export const Header = () => {
-  const { searchQuery, setSearchQuery, applySearch } = useFilters();
+  const { inputSearch, setInputSearch, applySearch } = useFilters();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    setInputSearch(e.target.value);
   };
 
   const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ export const Header = () => {
               type="text"
               placeholder="Search"
               className={styles.searchInput}
-              value={searchQuery}
+              value={inputSearch}
               onChange={handleSearchChange}
               onKeyDown={onPressEnter}
               aria-label="Search blog posts"

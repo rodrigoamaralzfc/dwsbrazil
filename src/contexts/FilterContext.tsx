@@ -1,23 +1,23 @@
+import type { ReactNode } from "react";
 import {
   createContext,
   useCallback,
   useContext,
   useState,
 } from "react";
-import type { ReactNode } from "react";
 
 type FilterContextType = {
-  selectedCategories: string[];
-  finalSelectedCategories: string[];
-  selectedAuthors: string[];
-  finalSelectedAuthors: string[];
+  inputCategories: string[];
+  categories: string[];
+  inputAuthors: string[];
+  authors: string[];
   sortBy: string;
+  inputSearch: string;
   searchQuery: string;
-  finalSearchQuery: string;
   toggleCategory: (categoryId: string) => void;
   toggleAuthor: (authorId: string) => void;
   setSortBy: (value: string) => void;
-  setSearchQuery: (value: string) => void;
+  setInputSearch: (value: string) => void;
   applyFilters: () => void;
   applySearch: () => void;
 };
@@ -29,19 +29,19 @@ type Props = {
 };
 
 export const FilterProvider = ({ children }: Props) => {
-  const [finalSelectedCategories, setFinalSelectedCategories] = useState<string[]>([]);
-  const [finalSelectedAuthors, setFinalSelectedAuthors] = useState<string[]>([]);
-  const [finalSearchQuery, setFinalSearchQuery] = useState<string>("");
-
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<string>("newest");
+  // final values used for filtering
+  const [categories, setCategories] = useState<string[]>([]);
+  const [authors, setAuthors] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [sortBy, setSortBy] = useState<string>("newest");
 
-  console.info(selectedAuthors, finalSelectedAuthors)
+  // temporary input values
+  const [inputCategories, setInputCategories] = useState<string[]>([]);
+  const [inputAuthors, setInputAuthors] = useState<string[]>([]);
+  const [inputSearch, setInputSearch] = useState<string>("");
 
   const toggleCategory = useCallback((categoryId: string) => {
-    setSelectedCategories((prev) =>
+    setInputCategories((prev) =>
       prev.includes(categoryId)
         ? prev.filter((id) => id !== categoryId)
         : [...prev, categoryId]
@@ -49,7 +49,7 @@ export const FilterProvider = ({ children }: Props) => {
   }, []);
 
   const toggleAuthor = useCallback((authorId: string) => {
-    setSelectedAuthors((prev) =>
+    setInputAuthors((prev) =>
       prev.includes(authorId)
         ? prev.filter((id) => id !== authorId)
         : [...prev, authorId]
@@ -57,26 +57,26 @@ export const FilterProvider = ({ children }: Props) => {
   }, []);
 
   const applyFilters = useCallback(() => {
-    setFinalSelectedCategories(selectedCategories);
-    setFinalSelectedAuthors(selectedAuthors);
-  }, [selectedCategories, selectedAuthors]);
+    setCategories(inputCategories);
+    setAuthors(inputAuthors);
+  }, [inputCategories, inputAuthors]);
 
   const applySearch = useCallback(() => {
-    setFinalSearchQuery(searchQuery);
-  }, [searchQuery]);
+    setSearchQuery(inputSearch);
+  }, [inputSearch]);
 
   const value: FilterContextType = {
-    selectedCategories,
-    finalSelectedCategories,
-    selectedAuthors,
-    finalSelectedAuthors,
+    inputCategories,
+    categories,
+    inputAuthors,
+    authors,
     sortBy,
+    inputSearch,
     searchQuery,
-    finalSearchQuery,
     toggleCategory,
     toggleAuthor,
     setSortBy,
-    setSearchQuery,
+    setInputSearch,
     applyFilters,
     applySearch,
   };
