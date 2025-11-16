@@ -1,5 +1,6 @@
 import FilterIcon from '@/assets/icons/tune.svg?react';
 import { useFilters } from '@/contexts/FilterContext';
+import { useIsMobile } from '@/hooks/useIsMobile';
 import { api } from '@/services/api';
 import { useQuery } from '@tanstack/react-query';
 import { Button } from '../Button/Button';
@@ -17,8 +18,15 @@ export const Sidebar = () => {
   const { data: categories = [] } = useQuery({ queryKey: ['categories'], queryFn: api.getCategories });
   const { data: authors = [] } = useQuery({ queryKey: ['authors'], queryFn: api.getAuthors });
 
+  const isMobile = useIsMobile()
+
   const hasActiveFilters =
     selectedCategories.length > 0 || selectedAuthors.length > 0;
+
+  // TODO
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <aside className={styles.sidebar}>
