@@ -48,7 +48,7 @@ export function DropdownButton({ options, placeholder = "Category" }: DropdownBu
       {open && (
         <div className={styles.list}>
           {options.map(({ id, label }) => (
-            <label key={id} className={styles.item}>
+            <label key={id} className={styles.filterCheckbox}>
               <input
                 type="checkbox"
                 className={styles.item}

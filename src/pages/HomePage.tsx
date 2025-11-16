@@ -1,6 +1,9 @@
+import { DesktopBlogTop } from "@/components/DesktopBlogTop/DesktopBlogTop";
+import { MobileBlogFilter } from "@/components/MobileBlogFilter/MobileBlogFilter";
 import { PostCard } from "@/components/PostCard/PostCard";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
 import { useFilters } from "@/contexts/FilterContext";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { usePostFiltering } from "@/hooks/usePostFiltering";
 import { api } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
@@ -14,6 +17,7 @@ export const HomePage = () => {
     error,
   } = useQuery({ queryKey: ["posts"], queryFn: api.getPosts });
   const filteredPosts = usePostFiltering(posts);
+  const isMobile = useIsMobile()
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value);
@@ -27,20 +31,10 @@ export const HomePage = () => {
         </div>
 
         <main className={styles.mainContent}>
-          <div className={styles.contentHeader}>
-            <h1>DWS blog</h1>
-            <div className={styles.sortControls}>
-              <label>Sort by:</label>
-              <select
-                value={sortBy}
-                onChange={handleSortChange}
-                className={styles.sortSelect}
-              >
-                <option value="newest">Newest first</option>
-                <option value="oldest">Oldest first</option>
-              </select>
-            </div>
-          </div>
+          {isMobile
+            ? <MobileBlogFilter sortBy={sortBy} handleSortChange={handleSortChange} />
+            : <DesktopBlogTop sortBy={sortBy} handleSortChange={handleSortChange} />
+          }
 
           {/* TODO error handling */}
           {error && (
