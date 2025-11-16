@@ -19,6 +19,7 @@ export const PostCard = ({ post }: PostCardProps) => {
       <div className={styles.imageWrapper}>
         <img
           src={
+            // FIXME: placeholder
             post.thumbnail_url ||
             '/placeholder.svg?height=200&width=400&query=blog+post+gradient'
             || "/placeholder.svg"}

@@ -1,123 +1,119 @@
 @use "../styles/variables" as *;
+@use "../styles/mixins" as *;
 
-.main {
+.postDetailPage {
   min-height: 100vh;
-  background-color: $neutral-dark;
+  background-color: $neutral-lightest;
 }
 
-.foo {
-  background-color: yellow;
-  margin-bottom: 30px;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: $space-xl $space-lg;
+  background-color: white;
+  margin-top: $space-lg;
+  border-radius: $radius-lg;
+
+  @include mobile-first-md {
+    padding: $space-lg $space-md;
+    margin-top: $space-md;
+  }
 }
 
-// .homePage {
-//   min-height: 100vh;
-//   background-color: $neutral-lightest;
-// }
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-md;
+  background-color: transparent;
+  color: $secondary-medium;
+  border: 1px solid $secondary-medium;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  @include transition();
+  margin-bottom: $space-lg;
 
-// .pageContainer {
-//   max-width: 1400px;
-//   margin: 0 auto;
-//   display: grid;
-//   grid-template-columns: 280px 1fr;
-//   gap: $space-lg;
-//   padding: $space-lg;
+  &:hover {
+    background-color: $secondary-medium;
+    color: white;
+  }
+}
 
-//   @include mobile-first-lg {
-//     grid-template-columns: 1fr;
-//   }
+.header {
+  margin-bottom: $space-xl;
+}
 
-//   @include mobile-first-md {
-//     padding: $space-md;
-//     gap: $space-md;
-//   }
-// }
+.title {
+  font-size: $font-size-4xl;
+  color: $neutral-darkest;
+  margin: 0 0 $space-md 0;
+  line-height: $line-height-tight;
 
-// .sidebarWrapper {
-//   position: sticky;
-//   top: calc(64px + $space-lg);
-//   height: fit-content;
+  @include mobile-first-md {
+    font-size: $font-size-2xl;
+  }
+}
 
-//   @include mobile-first-lg {
-//     position: static;
-//   }
-// }
+.meta {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  color: $neutral-medium;
+  font-size: $font-size-base;
+}
 
-// .mainContent {
-//   display: flex;
-//   flex-direction: column;
-//   gap: $space-lg;
-// }
+.date {
+  color: $secondary-medium;
+  font-weight: 500;
+}
 
-// .contentHeader {
-//   @include flex-between;
-//   gap: $space-md;
-//   flex-wrap: wrap;
+.image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: $radius-lg;
+  margin: $space-xl 0;
 
-//   @include mobile-first-md {
-//     flex-direction: column;
-//     align-items: flex-start;
-//   }
+  @include mobile-first-md {
+    max-height: 300px;
+  }
+}
 
-//   h1 {
-//     font-size: $font-size-4xl;
-//     color: $neutral-darkest;
-//     margin: 0;
+.content {
+  line-height: $line-height-normal;
+  color: $neutral-dark;
+  margin-bottom: $space-xl;
 
-//     @include mobile-first-md {
-//       font-size: $font-size-2xl;
-//     }
-//   }
-// }
+  p {
+    margin-bottom: $space-md;
+  }
+}
 
-// .sortControls {
-//   display: flex;
-//   align-items: center;
-//   gap: $space-sm;
-//   color: $neutral-medium;
-// }
+.categories {
+  display: flex;
+  gap: $space-sm;
+  flex-wrap: wrap;
+  padding-top: $space-lg;
+  border-top: 1px solid $neutral-light;
+}
 
-// .sortSelect {
-//   background-color: white;
-//   border: 1px solid $neutral-light;
-//   border-radius: $radius-md;
-//   padding: $space-sm $space-md;
-//   color: $neutral-darkest;
-//   font-size: $font-size-sm;
-//   cursor: pointer;
-//   @include transition(border-color);
+.categoryTag {
+  display: inline-block;
+  background-color: $neutral-lightest;
+  color: $neutral-dark;
+  padding: $space-sm $space-md;
+  border-radius: $radius-md;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  text-transform: capitalize;
+}
 
-//   &:hover {
-//     border-color: $secondary-medium;
-//   }
-// }
-
-// .postsGrid {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-//   gap: $space-lg;
-
-//   @include mobile-first-lg {
-//     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-//   }
-
-//   @include mobile-first-md {
-//     grid-template-columns: 1fr;
-//   }
-// }
-
-// .loading,
-// .noResults,
-// .errorMessage {
-//   text-align: center;
-//   padding: $space-2xl;
-//   color: $neutral-medium;
-//   font-size: $font-size-base;
-// }
-
-// .errorMessage {
-//   background-color: #fee;
-//   color: #c33;
-//   border-radius: $radius-lg;
-//   padding: $space-lg;
-// }
+.loading,
+.error {
+  @include flex-center;
+  min-height: 100vh;
+  font-size: $font-size-lg;
+  color: $neutral-medium;
+}

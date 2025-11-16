@@ -1,16 +1,16 @@
-import { useNavigate, useParams } from 'react-router';
-// import { useFormatDate } from '@/hooks/useFormatDate';
 import { api } from '@/services/api';
-// import styles from '@/styles/pages/PostDetailPage.module.scss';
 import { formatDate } from '@/utils/date';
 import { useQuery } from '@tanstack/react-query';
-
-const styles = {} as any; // FIXME
-
+import { useNavigate, useParams } from 'react-router';
+import styles from './PostDetailPage.module.scss';
 
 export const PostDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  if (id == undefined) {
+    throw new Error("Route param id is missing");
+  }
 
   const { data: post, isLoading, error } = useQuery({
     queryKey: ['post', id],
@@ -22,6 +22,7 @@ export const PostDetailPage = () => {
     navigate('/');
   };
 
+  // TODO loading state
   if (isLoading) {
     return (
       <div className={styles.postDetailPage}>
@@ -30,6 +31,7 @@ export const PostDetailPage = () => {
     );
   }
 
+  // TODO error handling
   if (error || !post) {
     return (
       <div className={styles.postDetailPage}>
@@ -42,6 +44,7 @@ export const PostDetailPage = () => {
     <div className={styles.postDetailPage}>
       <article className={styles.container}>
         <button className={styles.backButton} onClick={handleBack}>
+          {/* FIXME icon */}
           ← Back
         </button>
 
@@ -60,6 +63,7 @@ export const PostDetailPage = () => {
 
         {post.thumbnail_url && (
           <img
+            // FIXME: placeholder
             src={post.thumbnail_url || '/placeholder.svg'}
             alt={post.title}
             className={styles.image}

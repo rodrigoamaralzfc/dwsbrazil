@@ -15,14 +15,12 @@ export const HomePage = () => {
   } = useQuery({ queryKey: ["posts"], queryFn: api.getPosts });
   const filteredPosts = usePostFiltering(posts);
 
-  const handleSortChange = (e) => {
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(e.target.value);
   };
 
   return (
     <div className={styles.homePage}>
-      {/* <Header /> */}
-
       <div className={styles.pageContainer}>
         <div className={styles.sidebarWrapper}>
           <Sidebar />
@@ -44,12 +42,14 @@ export const HomePage = () => {
             </div>
           </div>
 
+          {/* TODO error handling */}
           {error && (
             <div className={styles.errorMessage}>
               Error loading posts. Please try again.
             </div>
           )}
 
+          {/* TODO loading state */}
           {isLoading && <div className={styles.loading}>Loading posts...</div>}
 
           {!isLoading && filteredPosts.length === 0 && (
