@@ -1,8 +1,8 @@
 import FilterIcon from '@/assets/icons/tune.svg?react';
 import { useFilters } from '@/contexts/FilterContext';
+import { useGetAuthors } from '@/hooks/useGetAuthors';
+import { useGetCategories } from '@/hooks/useGetCategories';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { api } from '@/services/api';
-import { useQuery } from '@tanstack/react-query';
 import { Button } from '../Button/Button';
 import styles from './Sidebar.module.scss';
 
@@ -15,8 +15,8 @@ export const Sidebar = () => {
     applyFilters,
   } = useFilters();
 
-  const { data: categories = [] } = useQuery({ queryKey: ['categories'], queryFn: api.getCategories });
-  const { data: authors = [] } = useQuery({ queryKey: ['authors'], queryFn: api.getAuthors });
+  const { data: categories = [] } = useGetCategories()
+  const { data: authors = [] } = useGetAuthors()
 
   const isMobile = useIsMobile()
 
