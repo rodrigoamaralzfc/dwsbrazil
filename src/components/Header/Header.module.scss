@@ -1,0 +1,108 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  background-color: white;
+  border-bottom: 1px solid $neutral-light;
+  padding: $space-md $space-lg;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  @include flex-between;
+  gap: $space-lg;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.logoText {
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $neutral-darkest;
+  letter-spacing: -0.5px;
+}
+
+.logoSubtext {
+  font-size: $font-size-xs;
+  color: $neutral-medium;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+}
+
+.searchSection {
+  flex: 1;
+  max-width: 400px;
+
+  @include mobile-first-md {
+    max-width: 100%;
+  }
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background-color: $neutral-extra-light;
+  border-radius: $radius-lg;
+  padding: $space-sm $space-md;
+  gap: $space-sm;
+  border: 1px solid $neutral-light;
+  @include transition(border-color);
+
+  &:focus-within {
+    border-color: $secondary-medium;
+  }
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: $font-size-base;
+  color: $neutral-darkest;
+
+  &::placeholder {
+    color: $neutral-medium;
+  }
+}
+
+.searchButton {
+  @include flex-center;
+  @include button-reset;
+  width: 32px;
+  height: 32px;
+  background-color: $neutral-darkest;
+  border-radius: $radius-md;
+  color: white;
+  @include transition(background-color);
+
+  // TODO
+  // &:hover {
+  //   background-color: $neutral-extra-dark;
+  // }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@include mobile-first-md {
+  .container {
+    flex-direction: column;
+    gap: $space-md;
+  }
+
+  .logoText {
+    font-size: $font-size-base;
+  }
+}
