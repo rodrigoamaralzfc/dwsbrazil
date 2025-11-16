@@ -1,0 +1,32 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $space-lg;
+
+  @include mobile-first-lg {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  @include mobile-first-md {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading,
+.noResults,
+.errorMessage {
+  text-align: center;
+  padding: $space-2xl;
+  color: $neutral-medium;
+  font-size: $font-size-base;
+}
+
+.errorMessage {
+  background-color: #fee;
+  color: #c33;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+}

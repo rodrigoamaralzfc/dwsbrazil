@@ -1,5 +1,6 @@
 import { useFilters } from '@/contexts/FilterContext';
 import type { Post } from '@/types/post';
+import { sortByNewest, sortByOldest } from '@/utils/date';
 import { useMemo } from 'react';
 
 export const usePostFiltering = (posts: Post[]) => {
@@ -26,15 +27,17 @@ export const usePostFiltering = (posts: Post[]) => {
     });
 
     if (sortBy === 'newest') {
-      filtered.sort(
-        (a, b) =>
-          (new Date(b.createdAt)).getTime() - (new Date(a.createdAt)).getTime()
-      );
+      sortByNewest(filtered)
+      // filtered.sort(
+      //   (a, b) =>
+      //     (new Date(b.createdAt)).getTime() - (new Date(a.createdAt)).getTime()
+      // );
     } else if (sortBy === 'oldest') {
-      filtered.sort(
-        (a, b) =>
-          (new Date(a.createdAt)).getTime() - (new Date(b.createdAt)).getTime()
-      );
+      sortByOldest(filtered)
+      // filtered.sort(
+      //   (a, b) =>
+      //     (new Date(a.createdAt)).getTime() - (new Date(b.createdAt)).getTime()
+      // );
     }
 
     return filtered;

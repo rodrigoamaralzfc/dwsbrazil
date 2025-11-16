@@ -1,5 +1,6 @@
 import Arrow from '@/assets/icons/arrow-left-magenta.svg?react';
 import { Button } from '@/components/Button/Button';
+import { LatestArticles } from '@/components/LatestArticles/LatestArticles';
 import { api } from '@/services/api';
 import { formatDate } from '@/utils/date';
 import { useQuery } from '@tanstack/react-query';
@@ -79,15 +80,7 @@ export const PostDetailPage = () => {
           {post.content && <p>{post.content}</p>}
         </div>
 
-        {post.categories && post.categories.length > 0 && (
-          <div className={styles.categories}>
-            {post.categories.map((category) => (
-              <span key={category.id} className={styles.categoryTag}>
-                {category.name}
-              </span>
-            ))}
-          </div>
-        )}
+        <LatestArticles />
       </article>
     </div>
   );
