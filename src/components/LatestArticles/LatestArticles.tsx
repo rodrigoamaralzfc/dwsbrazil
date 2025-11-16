@@ -4,10 +4,6 @@ import { sortByNewest } from "@/utils/date";
 import { useQuery } from "@tanstack/react-query";
 import styles from './LatestArticles.module.scss';
 
-export function uniqueArray<T>(list: T[]) {
-  return Array.from(new Set(list))
-}
-
 export const LatestArticles = () => {
   const {
     data: posts = [],

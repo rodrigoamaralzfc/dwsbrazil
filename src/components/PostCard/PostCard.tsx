@@ -18,11 +18,7 @@ export const PostCard = ({ post }: PostCardProps) => {
     <article className={styles.postCard} onClick={handleClick}>
       <div className={styles.imageWrapper}>
         <img
-          src={
-            // FIXME: placeholder
-            post.thumbnail_url ||
-            '/placeholder.svg?height=200&width=400&query=blog+post+gradient'
-            || "/placeholder.svg"}
+          src={post.thumbnail_url}
           alt={post.title}
           className={styles.image}
         />
