@@ -1,4 +1,5 @@
-import SearchSVG from '@/assets/icons/search.svg?react';
+import SearchSVG from '@/assets/icons/search-button.svg?react';
+import LogoSVG from '@/assets/icons/dws-logo.svg?react';
 import { useFilters } from '@/contexts/FilterContext';
 import styles from './Header.module.scss';
 
@@ -12,10 +13,11 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo}>
+        <LogoSVG />
+        {/* <div className={styles.logo}>
           <span className={styles.logoText}>dentsu</span>
           <span className={styles.logoSubtext}>world services</span>
-        </div>
+        </div> */}
 
         <div className={styles.searchSection}>
           <div className={styles.searchBox}>
