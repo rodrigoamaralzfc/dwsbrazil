@@ -9,10 +9,12 @@ import styles from './Sidebar.module.scss';
 export const Sidebar = () => {
   const {
     selectedCategories,
+    finalSelectedCategories,
     selectedAuthors,
+    finalSelectedAuthors,
     toggleCategory,
     toggleAuthor,
-    clearFilters,
+    applyFilters,
   } = useFilters();
 
   const { data: categories = [] } = useQuery({ queryKey: ['categories'], queryFn: api.getCategories });
@@ -20,6 +22,7 @@ export const Sidebar = () => {
 
   const isMobile = useIsMobile()
 
+  // TODO?
   const hasActiveFilters =
     selectedCategories.length > 0 || selectedAuthors.length > 0;
 
@@ -69,9 +72,10 @@ export const Sidebar = () => {
 
       <Button
         variant="primary"
-        onClick={clearFilters}
-        disabled={!hasActiveFilters}>
-        {hasActiveFilters ? 'Clear filters' : 'Apply filters'}
+        onClick={applyFilters}
+      // disabled={!hasActiveFilters}
+      >
+        Apply filters
       </Button>
     </aside>
   );

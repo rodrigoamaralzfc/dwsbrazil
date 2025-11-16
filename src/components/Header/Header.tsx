@@ -14,10 +14,6 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <LogoSVG />
-        {/* <div className={styles.logo}>
-          <span className={styles.logoText}>dentsu</span>
-          <span className={styles.logoSubtext}>world services</span>
-        </div> */}
 
         <div className={styles.searchSection}>
           <div className={styles.searchBox}>
@@ -32,7 +28,7 @@ export const Header = () => {
             <button
               className={styles.searchButton}
               aria-label="Submit search"
-              onClick={() => { }}
+              onClick={() => { }} // TODO
             >
               <SearchSVG />
             </button>

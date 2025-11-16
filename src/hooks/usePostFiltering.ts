@@ -3,26 +3,26 @@ import type { Post } from '@/types/post';
 import { useMemo } from 'react';
 
 export const usePostFiltering = (posts: Post[]) => {
-  const { selectedCategories, selectedAuthors, sortBy, searchQuery } = useFilters();
+  const { finalSelectedCategories, finalSelectedAuthors, sortBy, searchQuery } = useFilters();
 
-  return useMemo(() => {
+  const filteredPosts = useMemo(() => {
     if (!posts) return [];
 
     const filtered = posts.filter((post) => {
       const matchesCategory =
-        selectedCategories.length === 0 ||
-        post.categories?.some((cat) => selectedCategories.includes(cat.id));
+        finalSelectedCategories.length === 0 ||
+        post.categories?.some((cat) => finalSelectedCategories.includes(cat.id));
 
       const matchesAuthor =
-        selectedAuthors.length === 0 ||
-        selectedAuthors.includes(post.author?.id);
+        finalSelectedAuthors.length === 0 ||
+        finalSelectedAuthors.includes(post.author?.id);
 
       const matchesSearch =
         searchQuery === '' ||
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.content?.toLowerCase().includes(searchQuery.toLowerCase());
 
-      return matchesCategory && matchesAuthor && matchesSearch;
+      return (matchesCategory || matchesAuthor) && matchesSearch;
     });
 
     if (sortBy === 'newest') {
@@ -38,5 +38,7 @@ export const usePostFiltering = (posts: Post[]) => {
     }
 
     return filtered;
-  }, [posts, selectedCategories, selectedAuthors, sortBy, searchQuery]);
+  }, [posts, finalSelectedCategories, finalSelectedAuthors, sortBy, searchQuery]);
+
+  return filteredPosts
 };

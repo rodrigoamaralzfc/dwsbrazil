@@ -8,14 +8,16 @@ import type { ReactNode } from "react";
 
 type FilterContextType = {
   selectedCategories: string[];
+  finalSelectedCategories: string[];
   selectedAuthors: string[];
+  finalSelectedAuthors: string[];
   sortBy: string;
   searchQuery: string;
   toggleCategory: (categoryId: string) => void;
   toggleAuthor: (authorId: string) => void;
   setSortBy: (value: string) => void;
   setSearchQuery: (value: string) => void;
-  clearFilters: () => void;
+  applyFilters: () => void;
 };
 
 const FilterContext = createContext<FilterContextType | null>(null);
@@ -25,10 +27,15 @@ type Props = {
 };
 
 export const FilterProvider = ({ children }: Props) => {
+  const [finalSelectedCategories, setFinalSelectedCategories] = useState<string[]>([]);
+  const [finalSelectedAuthors, setFinalSelectedAuthors] = useState<string[]>([]);
+
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<string>("newest");
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  console.info(selectedAuthors, finalSelectedAuthors)
 
   const toggleCategory = useCallback((categoryId: string) => {
     setSelectedCategories((prev) =>
@@ -46,23 +53,23 @@ export const FilterProvider = ({ children }: Props) => {
     );
   }, []);
 
-  const clearFilters = useCallback(() => {
-    setSelectedCategories([]);
-    setSelectedAuthors([]);
-    setSearchQuery("");
-    setSortBy("newest");
-  }, []);
+  const applyFilters = useCallback(() => {
+    setFinalSelectedCategories(selectedCategories);
+    setFinalSelectedAuthors(selectedAuthors);
+  }, [selectedCategories, selectedAuthors]);
 
   const value: FilterContextType = {
     selectedCategories,
+    finalSelectedCategories,
     selectedAuthors,
+    finalSelectedAuthors,
     sortBy,
     searchQuery,
     toggleCategory,
     toggleAuthor,
     setSortBy,
     setSearchQuery,
-    clearFilters,
+    applyFilters,
   };
 
   return (
