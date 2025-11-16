@@ -56,17 +56,21 @@ export const PostDetailPage = () => {
         </Button>
 
         <article className={styles.container}>
-
           <div className={styles.header}>
             <h1 className={styles.title}>{post.title}</h1>
 
             <div className={styles.meta}>
-              <time className={styles.date}>
-                {formatDate(post.createdAt || post.updatedAt, 'long')}
-              </time>
-              {post.author && (
-                <span>By {post.author.name}</span>
-              )}
+              <img className={styles.avatar} src={post.author.profilePicture} alt="Profile picture" />
+
+              <div className={styles.metaCol}>
+                <p>
+                  Written by: <strong>{post.author.name}</strong>
+                </p>
+
+                <time className={styles.date}>
+                  {formatDate(post.createdAt || post.updatedAt, 'long')}
+                </time>
+              </div>
             </div>
           </div>
 

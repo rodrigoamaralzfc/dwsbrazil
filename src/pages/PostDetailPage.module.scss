@@ -27,6 +27,11 @@
   margin-right: 32px;
 }
 
+.avatar {
+  width: 64px;
+  height: 64px;
+}
+
 .container {
   max-width: 875px;
   margin: 0 auto;
@@ -64,8 +69,17 @@
   font-size: $font-size-base;
 }
 
+.metaCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+  gap: $space-sm;
+}
+
 .date {
-  color: $secondary-medium;
+  color: #5e5f63;
   font-weight: 500;
 }
 
