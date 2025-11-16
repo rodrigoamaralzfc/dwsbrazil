@@ -1,0 +1,45 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.contentHeader {
+  @include flex-between;
+  gap: $space-md;
+  flex-wrap: wrap;
+
+  @include mobile-first-md {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: $font-size-4xl;
+    color: $neutral-darkest;
+    margin: 0;
+
+    @include mobile-first-md {
+      font-size: $font-size-2xl;
+    }
+  }
+}
+
+.sortControls {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  color: $neutral-medium;
+}
+
+.sortSelect {
+  background-color: white;
+  border: 1px solid $neutral-light;
+  border-radius: $radius-md;
+  padding: $space-sm $space-md;
+  color: $neutral-darkest;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  @include transition(border-color);
+
+  &:hover {
+    border-color: $secondary-medium;
+  }
+}
