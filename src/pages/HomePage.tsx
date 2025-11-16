@@ -1,32 +1,10 @@
-import { HomePost } from "@/components/HomePost";
+import { PostCard } from "@/components/PostCard/PostCard";
+import { Sidebar } from "@/components/Sidebar/Sidebar";
+import { useFilters } from "@/contexts/FilterContext";
+import { usePostFiltering } from "@/hooks/usePostFiltering";
 import { api } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import styles from './HomePage.module.scss';
-import { useFilters } from "@/contexts/FilterContext";
-import { usePostFiltering } from "@/hooks/usePostFiltering";
-import { PostCard } from "@/components/PostCard/PostCard";
-
-// export const HomePage = () => {
-//   const {
-//     data: posts = [],
-//     isLoading,
-//     error,
-//   } = useQuery({ queryKey: ["posts"], queryFn: api.getPosts });
-
-//   const authorIdList = posts.map(post => post.authorId);
-
-//   console.info({ posts, isLoading, error });
-
-//   if (posts.length === 0) {
-//     return 'Loading'
-//   }
-
-//   return (
-//     <main className={styles.main}>
-//       {posts.map((post) => (<HomePost post={post} key={post.id} />))}
-//     </main >
-//   );
-// }
 
 export const HomePage = () => {
   const { sortBy, setSortBy } = useFilters();
@@ -47,8 +25,7 @@ export const HomePage = () => {
 
       <div className={styles.pageContainer}>
         <div className={styles.sidebarWrapper}>
-          {/* <Sidebar /> */}
-          Sidebar
+          <Sidebar />
         </div>
 
         <main className={styles.mainContent}>

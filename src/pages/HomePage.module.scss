@@ -1,123 +1,114 @@
 @use "../styles/variables" as *;
+@use "../styles/mixins" as *;
 
-.main {
+.homePage {
   min-height: 100vh;
-  background-color: $neutral-dark;
+  background-color: $neutral-lightest;
 }
 
-.foo {
-  background-color: yellow;
-  margin-bottom: 30px;
+.pageContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: $space-lg;
+  padding: $space-lg;
+
+  @include mobile-first-lg {
+    grid-template-columns: 1fr;
+  }
+
+  @include mobile-first-md {
+    padding: $space-md;
+    gap: $space-md;
+  }
 }
 
-// .homePage {
-//   min-height: 100vh;
-//   background-color: $neutral-lightest;
-// }
+.sidebarWrapper {
+  position: sticky;
+  top: calc(64px + $space-lg);
+  height: fit-content;
 
-// .pageContainer {
-//   max-width: 1400px;
-//   margin: 0 auto;
-//   display: grid;
-//   grid-template-columns: 280px 1fr;
-//   gap: $space-lg;
-//   padding: $space-lg;
+  @include mobile-first-lg {
+    position: static;
+  }
+}
 
-//   @include mobile-first-lg {
-//     grid-template-columns: 1fr;
-//   }
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
 
-//   @include mobile-first-md {
-//     padding: $space-md;
-//     gap: $space-md;
-//   }
-// }
+.contentHeader {
+  @include flex-between;
+  gap: $space-md;
+  flex-wrap: wrap;
 
-// .sidebarWrapper {
-//   position: sticky;
-//   top: calc(64px + $space-lg);
-//   height: fit-content;
+  @include mobile-first-md {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-//   @include mobile-first-lg {
-//     position: static;
-//   }
-// }
+  h1 {
+    font-size: $font-size-4xl;
+    color: $neutral-darkest;
+    margin: 0;
 
-// .mainContent {
-//   display: flex;
-//   flex-direction: column;
-//   gap: $space-lg;
-// }
+    @include mobile-first-md {
+      font-size: $font-size-2xl;
+    }
+  }
+}
 
-// .contentHeader {
-//   @include flex-between;
-//   gap: $space-md;
-//   flex-wrap: wrap;
+.sortControls {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  color: $neutral-medium;
+}
 
-//   @include mobile-first-md {
-//     flex-direction: column;
-//     align-items: flex-start;
-//   }
+.sortSelect {
+  background-color: white;
+  border: 1px solid $neutral-light;
+  border-radius: $radius-md;
+  padding: $space-sm $space-md;
+  color: $neutral-darkest;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  @include transition(border-color);
 
-//   h1 {
-//     font-size: $font-size-4xl;
-//     color: $neutral-darkest;
-//     margin: 0;
+  &:hover {
+    border-color: $secondary-medium;
+  }
+}
 
-//     @include mobile-first-md {
-//       font-size: $font-size-2xl;
-//     }
-//   }
-// }
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $space-lg;
 
-// .sortControls {
-//   display: flex;
-//   align-items: center;
-//   gap: $space-sm;
-//   color: $neutral-medium;
-// }
+  @include mobile-first-lg {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 
-// .sortSelect {
-//   background-color: white;
-//   border: 1px solid $neutral-light;
-//   border-radius: $radius-md;
-//   padding: $space-sm $space-md;
-//   color: $neutral-darkest;
-//   font-size: $font-size-sm;
-//   cursor: pointer;
-//   @include transition(border-color);
+  @include mobile-first-md {
+    grid-template-columns: 1fr;
+  }
+}
 
-//   &:hover {
-//     border-color: $secondary-medium;
-//   }
-// }
+.loading,
+.noResults,
+.errorMessage {
+  text-align: center;
+  padding: $space-2xl;
+  color: $neutral-medium;
+  font-size: $font-size-base;
+}
 
-// .postsGrid {
-//   display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-//   gap: $space-lg;
-
-//   @include mobile-first-lg {
-//     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-//   }
-
-//   @include mobile-first-md {
-//     grid-template-columns: 1fr;
-//   }
-// }
-
-// .loading,
-// .noResults,
-// .errorMessage {
-//   text-align: center;
-//   padding: $space-2xl;
-//   color: $neutral-medium;
-//   font-size: $font-size-base;
-// }
-
-// .errorMessage {
-//   background-color: #fee;
-//   color: #c33;
-//   border-radius: $radius-lg;
-//   padding: $space-lg;
-// }
+.errorMessage {
+  background-color: #fee;
+  color: #c33;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+}
